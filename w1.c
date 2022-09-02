@@ -14,7 +14,7 @@ long int size = sizeof(e);
 
 FILE *fp, *ft;
 
-void addrecord()
+void createrecord()
 {
     fseek(fp, 0, SEEK_END);
 
@@ -59,7 +59,7 @@ void deleterecord()
     fp = fopen("data.txt", "rb+");
 }
 
-void displayrecord()
+void readrecord()
 {
 
     rewind(fp);
@@ -71,25 +71,19 @@ void displayrecord()
         printf("\n\n\n\t");
     }
 }
-void modifyrecord()
+void updaterecord()
 {
 
     char empname[50];
-    // char another = 'y';
 
-    // while (another == 'y')
-    // {
     printf("\nEnter employee name"
            " to modify : ");
     scanf("%s", empname);
 
     rewind(fp);
 
-    // While File is open
     while (fread(&e, size, 1, fp) == 1)
     {
-        // Compare the employee name
-        // with ename
         if (strcmp(e.name, empname) == 0)
         {
             printf("\nEnter new name:");
@@ -106,12 +100,6 @@ void modifyrecord()
             break;
         }
     }
-
-    // Ask for modifying another record
-    // printf("\nWant to modify another"
-    //        " record (Y/N) :");
-
-    // scanf("%c", &another);
 }
 
 int main()
@@ -131,14 +119,14 @@ int main()
 
     while (1)
     {
-        printf("\n1. ADD RECORD\n");
-        printf("\n2. DELETE RECORD\n");
-        printf("\n3. DISPLAY RECORDS\n");
+        printf("\n1. Create a record\n");
+        printf("\n2. Delete a record\n");
+        printf("\n3. Read a record\n");
 
-        printf("\n4. MODIFY RECORD\n");
+        printf("\n4. Update record\n");
 
         printf("\n5. EXIT\n");
-        printf("\nENTER YOUR CHOICE...\n");
+        printf("\nEnter the operation: \n");
         fflush(stdin);
         scanf("%d", &choice);
 
@@ -146,7 +134,7 @@ int main()
         {
         case 1:
 
-            addrecord();
+            createrecord();
             break;
 
         case 2:
@@ -155,12 +143,12 @@ int main()
 
         case 3:
 
-            displayrecord();
+            readrecord();
             break;
 
         case 4:
 
-            modifyrecord();
+            updaterecord();
             break;
 
         case 5:
